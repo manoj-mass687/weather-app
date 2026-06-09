@@ -1,6 +1,18 @@
 import { useState } from 'react';
 import './App.css';
 
+function WeatherCard({ cityName, temp, condition, humidity }) {  // Day 12: Data received through Props
+  return (
+    <div style={{border: '2px solid blue', padding: '15px', marginTop: '20px'}}>
+      <h2>City: {cityName}</h2>
+      <h3>Temp: {temp}</h3>
+      <p>Condition: {condition}</p>
+      <p>Humidity: {humidity}</p>
+    </div>
+  );
+}
+
+
 function App() {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState(null);
@@ -45,14 +57,15 @@ function App() {
           </button>
         </div>
 
-        {weather && (
-          <div style={{marginTop: '30px', fontSize: '24px', backgroundColor: '#3a3f47', padding: '30px', borderRadius: '10px'}}>
-            <h2>{city.toUpperCase()}</h2>
-            <p>Temperature: {weather.temp}</p>
-            <p>Condition: {weather.condition}</p>
-            <p>Humidity: {weather.humidity}</p>
-          </div>
-        )}
+        {/* Day 12: Passing State as Props to Child Component */}
+{weather && (
+  <WeatherCard 
+    cityName={city} 
+    temp={weather.temp} 
+    condition={weather.condition} 
+    humidity={weather.humidity} 
+  />
+)}
       </header>
     </div>
   );
